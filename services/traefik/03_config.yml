@@ -3,14 +3,20 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: traefik-config
-  namespace: kube-system
+  namespace: default
 data:
   traefik.toml: |
     # traefik.toml
-    defaultEntryPoints = ["http"]
+    insecureSkipVerify = true
+    [log]
+      level = "INFO"
+    defaultEntryPoints = ["http", "https"]
+    [accessLog]
     [entryPoints]
       [entryPoints.http]
       address = ":80"
+      [entryPoints.https]
+      address = ":443"
     [kubernetes]
       [kubernetes.ingressEndpoint]
-        publishedService = "kube-system/traefik-ingress-controller"
+        publishedService = "default/traefik-ingress-controller"

@@ -3,7 +3,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: traefik-ingress-controller
-  namespace: kube-system
+  namespace: default
 spec:
   selector:
     app: traefik-ingress-controller
@@ -12,4 +12,6 @@ spec:
       name: http
     - port: 8080
       name: admin
+    - port: 443
+      name: https
   type: LoadBalancer

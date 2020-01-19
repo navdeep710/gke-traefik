@@ -34,7 +34,7 @@ kind: ServiceAccount
 apiVersion: v1
 metadata:
   name: traefik-ingress-controller
-  namespace: kube-system
+  namespace: default
 ---
 # bind role with service account
 kind: ClusterRoleBinding
@@ -48,4 +48,4 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: traefik-ingress-controller
-  namespace: kube-system
+  namespace: default
